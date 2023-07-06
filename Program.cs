@@ -58,6 +58,7 @@ Console.WriteLine($"Количество чётных чисел в массив
 //Задайте одномерный массив, заполненный случайными числами. 
 //Найдите сумму элементов, стоящих на нечётных позициях.
 
+/*
 int InputNum(string message) //Ввод с клавиатуры
 {
     Console.Write(message);
@@ -106,3 +107,56 @@ int result = SumElements(myArray);
 
 PrintArray(myArray);
 Console.WriteLine($"Сумма элементов нечетных позиций массива: {result}");
+*/
+
+//Задайте массив вещественных чисел. 
+//Найдите разницу между максимальным и минимальным элементов массива.
+
+int InputNum(string message) //Ввод с клавиатуры
+{
+    Console.Write(message);
+    return int.Parse(Console.ReadLine()!);
+}
+
+double[] CreateArray(int size) //Создание массива вещественных чисел
+{
+    return new double[size];
+}
+
+void FillArray(double[] array) //Заполнение массива вещественными числами
+{
+    int rand = new Random().Next(101);
+    Random rnd = new Random();
+    for (int i = 0; i < array.Length; i++)
+        array[i] = Math.Round(rnd.NextDouble() * rand, 2);
+}
+
+void PrintArray(double[] array) //Вывод массива на экран
+{
+    Console.Write("Ваш массив: ");
+    for (int i = 0; i < array.Length; i++)
+    {
+        Console.Write(array[i] + " ");
+    }
+    Console.WriteLine(" ");
+}
+
+double Differ(double[] array) //Разница между максимальным и минимальным элементом массива
+{
+    double max = array[0], min = array[0];
+    for (int i = 1; i < array.Length; i++)
+    {
+        if (array[i] > max) max = array[i];
+        else if (array[i] < min) min = array[i];
+    }
+    return max - min;
+}
+
+int size = InputNum("Введите размер массива: ");
+
+double [] myArray = CreateArray(size);
+FillArray(myArray);
+PrintArray(myArray);
+double result = Differ(myArray);
+
+Console.WriteLine($"Разница между максимальным и минимальным элементом массива: {result}");
